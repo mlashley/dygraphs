@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+    <link rel="stylesheet" href="../dist/dygraph.css">
     <title>dateWindow</title>
-    <!--[if IE]>
-    <script type="text/javascript" src="../excanvas.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="../strftime/strftime-min.js"></script>
-    <script type="text/javascript" src="../rgbcolor/rgbcolor.js"></script>
-    <script type="text/javascript" src="../dygraph-canvas.js"></script>
-    <script type="text/javascript" src="../dygraph.js"></script>
+    <script type="text/javascript" src="../dist/dygraph.js"></script>
+
   </head>
   <body>
     <p>dateWindow is set to something other than an x-value in the data set.
@@ -30,7 +25,8 @@
              document.getElementById("div_g1"),
              data, {
                dateWindow: [ Date.parse("2009/09/29 12:00:00"),
-                             Date.parse("2009/10/10 12:00:00") ]
+                             Date.parse("2009/10/10 12:00:00") ],
+               labels: [ 'Date', 'Y1', 'Y2' ]
              }
            );
 
@@ -38,7 +34,8 @@
              document.getElementById("div_g2"),
              data, {
                dateWindow: [ Date.parse("2009/10/01 12:00:00"),
-                             Date.parse("2009/10/08 12:00:00") ]
+                             Date.parse("2009/10/08 12:00:00") ],
+               labels: [ 'Date', 'Y1', 'Y2' ]
              }
            );
     </script>

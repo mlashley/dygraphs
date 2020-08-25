@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+    <link rel="stylesheet" href="../dist/dygraph.css">
     <title>zoom</title>
-    <!--[if IE]>
-    <script type="text/javascript" src="../excanvas.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="../strftime/strftime-min.js"></script>
-    <script type="text/javascript" src="../rgbcolor/rgbcolor.js"></script>
-    <script type="text/javascript" src="../dygraph-canvas.js"></script>
-    <script type="text/javascript" src="../dygraph.js"></script>
+    <script type="text/javascript" src="../dist/dygraph.js"></script>
+
     <script type="text/javascript" src="data.js"></script>
   </head>
   <body>
@@ -18,7 +13,13 @@
     buttons are useful for testing.</h3>
     <h4>Window coordinates (in dates and values):</h4>
     <div id="xdimensions"></div> <div id="ydimensions"></div>
+    <div style="float: right">
+        <p>Zoomed: <span id="zoomed">False</span><p/>
+        <p>Zoomed X: <span id="zoomedX">False</span><p/>
+        <p>Zoomed Y: <span id="zoomedY">False</span><p/>
+    </div>
     <div id="div_g" style="width:600px; height:300px;"></div>
+
 
     <p><b>Zoom operations:</b></p>
     <p>
@@ -27,13 +28,17 @@
       <input type="button" value="Y (2,4)" onclick="zoomGraphY(2,4)">&nbsp;
       <input type="button" value="Y (0,2)" onclick="zoomGraphY(0,2)">&nbsp;
       <input type="button" value="Y (0,1)" onclick="zoomGraphY(0,1)">&nbsp;
-      <br>
+      <br> <br>
       <input type="button" value="Oct 8-13" onclick="zoomGraphX(1160261979962, 1163905694248)">&nbsp;
       <input type="button" value="Oct 22-28" onclick="zoomGraphX(1161489164461 , 1162008465957)">&nbsp;
       <input type="button" value="Oct 23-24" onclick="zoomGraphX(1161575878860, 1161660991675)">&nbsp;
       <input type="button" value="Oct 26 6AM-noon" onclick="zoomGraphX(1161770537840, 1161792063332)">&nbsp;
-      <br>
+      <br> <br>
       <input type="button" value="Unzoom" onclick="unzoomGraph()">&nbsp;
+      <br> <br>
+      <input type="button" value="pan frame null" onclick="panEdgeFraction(null)">&nbsp;
+      <input type="button" value="pan frame 0.1" onclick="panEdgeFraction(0.1)">&nbsp;
+      <input type="button" value="pan frame 0.5" onclick="panEdgeFraction(0.5)">&nbsp;
       </p>
 
 
@@ -42,8 +47,13 @@
             document.getElementById("div_g"),
             NoisyData, {
               errorBars: true,
-              zoomCallback : function(minDate, maxDate, yRanges) {
-                showDimensions(minDate, maxDate, yRanges);
+              zoomCallback: function(minDate, maxDate, yRange) {
+                showDimensions(minDate, maxDate, yRange);
+              },
+              drawCallback: function() {
+                document.getElementById("zoomed").innerHTML = "" + this.isZoomed();
+                document.getElementById("zoomedX").innerHTML = "" + this.isZoomed("x");
+                document.getElementById("zoomedY").innerHTML = "" + this.isZoomed("y");
               }
             }
           );
@@ -92,6 +102,10 @@
           dateWindow: null,
           valueRange: null
         });
+      }
+
+      function panEdgeFraction(value) {
+        g.updateOptions({ panEdgeFraction : value });
       }
     </script>
 

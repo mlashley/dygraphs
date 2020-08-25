@@ -62,6 +62,12 @@ function offsetToPercentage(g, offsetX, offsetY) {
 function dblClickV3(event, g, context) {
   // Reducing by 20% makes it 80% the original size, which means
   // to restore to original size it must grow by 25%
+
+  if (!(event.offsetX && event.offsetY)){
+    event.offsetX = event.layerX - event.target.offsetLeft;
+    event.offsetY = event.layerY - event.target.offsetTop;
+  }
+
   var percentages = offsetToPercentage(g, event.offsetX, event.offsetY);
   var xPct = percentages[0];
   var yPct = percentages[1];
@@ -77,7 +83,8 @@ var lastClickedGraph = null;
 
 function clickV3(event, g, context) {
   lastClickedGraph = g;
-  Dygraph.cancelEvent(event);
+  event.preventDefault();
+  event.stopPropagation();
 }
 
 function scrollV3(event, g, context) {
@@ -89,12 +96,18 @@ function scrollV3(event, g, context) {
   // that verbatim, it would be a 7.5%.
   var percentage = normal / 50;
 
+  if (!(event.offsetX && event.offsetY)){
+    event.offsetX = event.layerX - event.target.offsetLeft;
+    event.offsetY = event.layerY - event.target.offsetTop;
+  }
+
   var percentages = offsetToPercentage(g, event.offsetX, event.offsetY);
   var xPct = percentages[0];
   var yPct = percentages[1];
 
   zoom(g, percentage, xPct, yPct);
-  Dygraph.cancelEvent(event);
+  event.preventDefault();
+  event.stopPropagation();
 }
 
 // Adjusts [x, y] toward each other by zoomInPercentage%
@@ -138,8 +151,9 @@ function moveV4(event, g, context) {
   var RANGE = 7;
 
   if (v4Active) {
-    var canvasx = Dygraph.pageX(event) - Dygraph.findPosX(g.graphDiv);
-    var canvasy = Dygraph.pageY(event) - Dygraph.findPosY(g.graphDiv);
+    var graphPos = Dygraph.findPos(g.graphDiv);
+    var canvasx = Dygraph.pageX(event) - graphPos.x;
+    var canvasy = Dygraph.pageY(event) - graphPos.y;
 
     var rows = g.numRows();
     // Row layout:
@@ -184,7 +198,7 @@ function upV4(event, g, context) {
 }
 
 function dblClickV4(event, g, context) {
-  restorePositioning(g4);
+  restorePositioning(g);
 }
 
 function drawV4(x, y) {

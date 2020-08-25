@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+    <link rel="stylesheet" href="../dist/dygraph.css">
     <title>no range</title>
-    <!--[if IE]>
-    <script type="text/javascript" src="../excanvas.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="../strftime/strftime-min.js"></script>
-    <script type="text/javascript" src="../rgbcolor/rgbcolor.js"></script>
-    <script type="text/javascript" src="../dygraph-canvas.js"></script>
-    <script type="text/javascript" src="../dygraph.js"></script>
+    <script type="text/javascript" src="../dist/dygraph.js"></script>
+
   </head>
   <body>
     <p>Line should be visible in the middle of the chart:</p>
@@ -19,11 +14,11 @@
     <div id="blah2"></div>
 
     <script type="text/javascript">
-    new Dygraph(document.getElementById("blah"),
+    var g1 = new Dygraph(document.getElementById("blah"),
                 "X,Y\n10,12345\n11,12345\n",
                 { width: 640, height: 480 });
 
-    new Dygraph(document.getElementById("blah2"),
+    var g2 = new Dygraph(document.getElementById("blah2"),
 "date,10M\n" +
 "20021229,10000000.000000\n" +
 "20030105,10000000.000000\n" +

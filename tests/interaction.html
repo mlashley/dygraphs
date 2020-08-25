@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+    <link rel="stylesheet" href="../dist/dygraph.css">
     <title>interaction model</title>
-    <!--[if IE]>
-    <script type="text/javascript" src="../excanvas.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="../strftime/strftime-min.js"></script>
-    <script type="text/javascript" src="../rgbcolor/rgbcolor.js"></script>
-    <script type="text/javascript" src="../dygraph-canvas.js"></script>
-    <script type="text/javascript" src="../dygraph.js"></script>
+    <script type="text/javascript" src="../dist/dygraph.js"></script>
+
     <script type="text/javascript" src="data.js"></script>
     <script type="text/javascript" src="interaction.js"></script>
   </head>
@@ -23,7 +18,9 @@
     <tr><td>
     <b>No interaction model</b>
     <div id="div_g2" style="width:600px; height:300px;"></div>
-    </td><td>Click and drag all you like, it won't do anything!</td></tr>
+    </td><td>Click and drag all you like, it won't do anything!
+    <div id="g2_console"></div>
+    </td></tr>
     <tr><td>
     <b>Custom interaction model</b>
 
@@ -47,12 +44,19 @@
     </table>
         
     <script type="text/javascript">
-      Dygraph.addEvent(document, "mousewheel", function() { lastClickedGraph = null; });
-      Dygraph.addEvent(document, "click", function() { lastClickedGraph = null; });
+      document.addEventListener("mousewheel", function() {
+        lastClickedGraph = null;
+      }, false);
+      document.addEventListener("click", function() { lastClickedGraph = null; }, false);
       var g = new Dygraph(document.getElementById("div_g"),
            NoisyData, { errorBars : true });
+      var s = document.getElementById("g2_console");
       var g2 = new Dygraph(document.getElementById("div_g2"),
-           NoisyData, { errorBars : true, interactionModel : {} });
+           NoisyData,
+           {
+             errorBars : true,
+             interactionModel: {}
+           });
       var g3 = new Dygraph(document.getElementById("div_g3"),
            NoisyData, { errorBars : true, interactionModel : {
         'mousedown' : downV3,

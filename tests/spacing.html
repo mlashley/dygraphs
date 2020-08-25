@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+    <link rel="stylesheet" href="../dist/dygraph.css">
     <title>spacing</title>
-    <!--[if IE]>
-    <script type="text/javascript" src="../excanvas.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="../strftime/strftime-min.js"></script>
-    <script type="text/javascript" src="../rgbcolor/rgbcolor.js"></script>
-    <script type="text/javascript" src="../dygraph-canvas.js"></script>
-    <script type="text/javascript" src="../dygraph.js"></script>
+    <script type="text/javascript" src="../dist/dygraph.js"></script>
+
     <script type="text/javascript" src="data.js"></script>
   </head>
   <body>
@@ -24,14 +19,22 @@
             document.getElementById("div_g"),
             data, {
               rollPeriod: 7,
-              pixelsPerYLabel: 20
+              axes: {
+                y: {
+                  pixelsPerLabel: 20
+                }
+              }
             }
           );
       g2 = new Dygraph(
             document.getElementById("div_g2"),
             data, {
               rollPeriod: 7,
-              pixelsPerYLabel: 20
+              axes: {
+                y: {
+                  pixelsPerLabel: 20
+                }
+              }
             }
           );
     </script>

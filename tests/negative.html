@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+    <link rel="stylesheet" href="../dist/dygraph.css">
     <title>negatives</title>
-    <!--[if IE]>
-    <script type="text/javascript" src="../excanvas.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="../strftime/strftime-min.js"></script>
-    <script type="text/javascript" src="../rgbcolor/rgbcolor.js"></script>
-    <script type="text/javascript" src="../dygraph-canvas.js"></script>
-    <script type="text/javascript" src="../dygraph.js"></script>
+    <script type="text/javascript" src="../dist/dygraph.js"></script>
+
   </head>
   <body>
     <p>All negatives (x-axis on top):</p>
@@ -31,17 +26,17 @@
         pos.push([i, 1000 + 2 * i, 1100 + i]);
       }
 
-      new Dygraph(
+      var g1 = new Dygraph(
         document.getElementById("g1"),
         negs, { labels: [ 'x', 'y1', 'y2' ] }
       );
 
-      new Dygraph(
+      var g2 = new Dygraph(
         document.getElementById("g2"),
         mixed, { labels: [ 'x', 'y1', 'y2' ] }
       );
 
-      new Dygraph(
+      var g3 = new Dygraph(
         document.getElementById("g3"),
         pos, { labels: [ 'x', 'y1', 'y2' ] }
       );

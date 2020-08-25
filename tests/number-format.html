@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+    <link rel="stylesheet" href="../dist/dygraph.css">
     <title>Test of number formatting</title>
-    <!--[if IE]>
-    <script type="text/javascript" src="../excanvas.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="../strftime/strftime-min.js"></script>
-    <script type="text/javascript" src="../rgbcolor/rgbcolor.js"></script>
-    <script type="text/javascript" src="../dygraph-canvas.js"></script>
-    <script type="text/javascript" src="../dygraph.js"></script>
+    <script type="text/javascript" src="../dist/dygraph.js"></script>
+
   </head>
   <body>
-    <p>The default formatting mimicks printf with %.<i>p</i>g where <i>p</i> is
+    <p>The default formatting mimics printf with %.<i>p</i>g where <i>p</i> is
        the precision to use.  It turns out that JavaScript's toPrecision()
        method is almost but not exactly equal to %g; they differ for values
        with small absolute values (10^-1 to 10^-5 or so), with toPrecision()

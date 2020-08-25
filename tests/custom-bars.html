@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+    <link rel="stylesheet" href="../dist/dygraph.css">
     <title>custom bars</title>
-    <!--[if IE]>
-    <script type="text/javascript" src="../excanvas.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="../strftime/strftime-min.js"></script>
-    <script type="text/javascript" src="../rgbcolor/rgbcolor.js"></script>
-    <script type="text/javascript" src="../dygraph-canvas.js"></script>
-    <script type="text/javascript" src="../dygraph.js"></script>
+    <script type="text/javascript" src="../dist/dygraph.js"></script>
+
     <script type="text/javascript" src="data.js"></script>
   </head>
   <body>
@@ -17,7 +12,7 @@
     <div id="graph"></div>
 
     <script type="text/javascript">
-      new Dygraph(document.getElementById("graph"),
+      var g = new Dygraph(document.getElementById("graph"),
                   [
                     [1, [10,  10, 100]],
                     [2, [15,  20, 110]],
@@ -30,7 +25,8 @@
                     [9, [10,  50, 100]]
                   ], {
                     customBars: true,
-                    errorBars: true
+                    errorBars: true,
+                    labels: ['X', 'Y']
                   }
                  );
     </script>

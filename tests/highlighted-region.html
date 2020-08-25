@@ -1,15 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7; IE=EmulateIE9">
+    <link rel="stylesheet" href="../dist/dygraph.css">
     <title>Highlighted Region</title>
-    <!--[if IE]>
-    <script type="text/javascript" src="../excanvas.js"></script>
-    <![endif]-->
-    <script type="text/javascript" src="../strftime/strftime-min.js"></script>
-    <script type="text/javascript" src="../rgbcolor/rgbcolor.js"></script>
-    <script type="text/javascript" src="../dygraph-canvas.js"></script>
-    <script type="text/javascript" src="../dygraph.js"></script>
+    <script type="text/javascript" src="../dist/dygraph.js"></script>
+
     <script type="text/javascript" src="data.js"></script>
   </head>
   <body>
@@ -34,11 +29,12 @@
       }
 
 
-      new Dygraph(
+      var g = new Dygraph(
           document.getElementById("div_g"),
           data,
           {
             labels: ['X', 'Est.', 'Actual'],
+            animatedZooms: true,
             underlayCallback: function(canvas, area, g) {
               var bottom_left = g.toDomCoords(highlight_start, -20);
               var top_right = g.toDomCoords(highlight_end, +20);
